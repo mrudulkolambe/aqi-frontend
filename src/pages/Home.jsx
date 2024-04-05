@@ -98,6 +98,8 @@ const Home = () => {
 							</div>
 							<div className='text-5xl font-bold text-black'>{Number(data.field4).toFixed(1)}</div>
 						</div>
+
+						<h2>1 need to be planted {"<manage()"}</h2>
 					</div>
 				</div>
 			</section>
