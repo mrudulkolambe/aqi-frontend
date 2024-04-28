@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const initialData = {
@@ -40,7 +41,6 @@ const Home = () => {
 	return (
 		<>
 			<section className='text-white min-h-screen w-screen bg-main px-6 py-8'>
-				<h3 className='text-center text-white font-extralight'>Hi, <b className='font-bold'> Admin</b></h3>
 				<h1 className='mt-8 text-2xl font-light text-white text-center'>Pollution <br /> Performance Score</h1>
 
 				<div className='flex justify-center mt-8'>
@@ -99,7 +99,7 @@ const Home = () => {
 							<div className='text-5xl font-bold text-black'>{Number(data.field4).toFixed(1)}</div>
 						</div>
 
-						<h2>1 need to be planted {"<manage()"}</h2>
+						<Link className='text-xl font-semibold text-white bg-[#4ECDC4] px-3 py-3 rounded-lg flex items-center justify-center' to={"/ndvi"}>Get NDVI</Link>
 					</div>
 				</div>
 			</section>
