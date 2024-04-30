@@ -7,12 +7,10 @@ const NDVI = () => {
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
   useEffect(() => {
-    axios(`https://home.agromonitoring.com/api/proxy/history/ndvi?polyid=662de9cd1a451ad923bed17a&start=1708972200&end=${moment().format("X")}`, {
-      headers: {
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNDMzMTMxNiwianRpIjoiYmNmYjM5ZjUtYmE3My00MGNkLWFhODYtODkzY2I4MTFkNmQ1IiwidHlwZSI6ImFjY2VzcyIsInBhc3Nwb3J0Ijp7ImRhdGEiOnsiZW1haWwiOiJtcnVkdWxrb2xhbWJlMDJAZ21haWwuY29tIiwiYXBwaWQiOiJmNzQyZmE5MjNhMTkyZjUxNzlhNmYwNGVkNjIwOTJjZCIsInRhcmlmZiI6ImZyZWUiLCJjb25maXJtZWRfZW1haWwiOnRydWV9LCJsaW1pdHMiOnsiY2FsbHMiOnsib25lX2NhbGwiOjUwMCwibmR2aV9oaXN0b3J5Ijo1MDAsInNvaWxfaGlzdG9yeSI6MCwid2VhdGhlcl9oaXN0b3J5X2FjY3VtdWxhdGVkX3RlbXBlcmF0dXJlIjowLCJ3ZWF0aGVyX2hpc3RvcnlfYWNjdW11bGF0ZWRfcHJlY2lwaXRhdGlvbiI6MCwid2VhdGhlcl9oaXN0b3J5IjowfSwiaGlzdG9yeSI6eyJuZHZpX2hpc3RvcnkiOnsic3RhcnQiOjEzNTY5OTg0MDAsImRlcHRoIjotMX0sInNvaWxfaGlzdG9yeSI6eyJzdGFydCI6MTU0NjMwMDgwMCwiZGVwdGgiOjB9LCJ3ZWF0aGVyX2hpc3RvcnlfYWNjdW11bGF0ZWRfdGVtcGVyYXR1cmUiOnsic3RhcnQiOjE1NDYzMDA4MDAsImRlcHRoIjowfSwid2VhdGhlcl9oaXN0b3J5X2FjY3VtdWxhdGVkX3ByZWNpcGl0YXRpb24iOnsic3RhcnQiOjE1NDYzMDA4MDAsImRlcHRoIjowfSwid2VhdGhlcl9oaXN0b3J5Ijp7InN0YXJ0IjoxMzI1Mzc2MDAwLCJkZXB0aCI6MH19LCJwb2x5Z29uX2FyZWEiOnsibWluX3BvbHlnb25fYXJlYSI6MSwibWF4X3BvbHlnb25fYXJlYSI6MTAwMCwibWF4X3RvdGFsX3BvbHlnb25zX2FyZWEiOjEwMDB9LCJtYXBzIjp7ImNyb3AiOlt7InllYXIiOjIwMjEsInN0YXR1cyI6Mn0seyJ5ZWFyIjoyMDIwLCJzdGF0dXMiOjJ9LHsieWVhciI6MjAxOSwic3RhdHVzIjoxfSx7InllYXIiOjIwMTgsInN0YXR1cyI6M30seyJ5ZWFyIjoyMDE3LCJzdGF0dXMiOjN9XX19fSwibmJmIjoxNzE0MzMxMzE2LCJleHAiOjE3MTQzMzQ5MTZ9.0pKlkSi999c2dIYRu33NPziv6AAwYO6CafbBGtDCZao"
-      }
-    })
+    console.log(`${moment().subtract(3, 'months').format("DD MM YYYY")}`);
+    axios(`https://api.agromonitoring.com/agro/1.0/ndvi/history?polyid=662de9cd1a451ad923bed17a&start=${moment().subtract(3, 'months').format("X")}&end=${moment().format("X")}&appid=f742fa923a192f5179a6f04ed62092cd`, {})
       .then((res) => {
+        console.log(JSON.stringify(res.data))
         let data1 = res.data.map((items) => Number(items.data.max))
         let data2 = res.data.map((items) => items.dt * 1000)
         setData1(data1)
